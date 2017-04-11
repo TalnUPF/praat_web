@@ -1,0 +1,141 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>edu.upf.taln.voice</groupId>
+	<artifactId>praatweb</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	
+	<name>PraatScriptsWebRunner</name>
+	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+        
+        <mvn.compiler.version>3.5.1</mvn.compiler.version>
+		<version.mvn.war.plugin>2.6</version.mvn.war.plugin>
+		
+        <servlet.api.version>3.0.1</servlet.api.version> 
+        <glassfish.jersey.version>2.23.1</glassfish.jersey.version>
+        
+    </properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>${glassfish.jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${glassfish.jersey.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${mvn.compiler.version}</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+	
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<server>local_tomcat</server>
+							<url>http://localhost:8080/manager/text</url>
+							<path>/${project.artifactId}</path>
+						</configuration>
+					</plugin>
+					<plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>${version.mvn.war.plugin}</version>
+                        <configuration>
+                            <webXml>${project.basedir}/src/main/resources/local/WEB-INF/web.xml</webXml>
+                        </configuration>
+                    </plugin>
+				</plugins>
+			</build>
+		</profile>
+	
+		<profile>
+			<id>development</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<server>abstractive_tomcat</server>
+							<url>http://ms-abstractive.s.upf.edu:8080/manager/text</url>
+							<path>/dev/${project.artifactId}</path>
+						</configuration>
+					</plugin>
+					<plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>${version.mvn.war.plugin}</version>
+                        <configuration>
+                            <webXml>${project.basedir}/src/main/resources/development/WEB-INF/web.xml</webXml>
+                        </configuration>
+                    </plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>production</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.2</version>
+						<configuration>
+							<server>kristina_tomcat</server>
+							<url>http://kristina-taln.s.upf.edu:8080/manager/text</url>
+							<path>/prod/${project.artifactId}</path>
+						</configuration>
+					</plugin>
+					<plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>${version.mvn.war.plugin}</version>
+                        <configuration>
+                            <webXml>${project.basedir}/src/main/resources/production/WEB-INF/web.xml</webXml>
+                        </configuration>
+                    </plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

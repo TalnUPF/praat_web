@@ -1,0 +1,9 @@
+.project
+.classpath
+/.settings/
+/target/
+/classes/
+/bin/
+/doc/
+/build/
+creole.xml
