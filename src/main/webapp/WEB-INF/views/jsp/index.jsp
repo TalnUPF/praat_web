@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="index.css" rel="stylesheet" type="text/css"/>
-	<link href="general.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/index.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
 <title>Praat on the Web Demo</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
 		    <a href="${pageContext.servletContext.contextPath}/ViewerForm" role="button" class="btn btn-textgrid btn-lg">Enter Demo 1</a>
 	    </div>
 	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/images/pic2.png" class="thumbnail"/>
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
 	  
@@ -37,7 +37,7 @@
 		    <a href="${pageContext.servletContext.contextPath}/Modules" role="button" class="btn btn-textgrid btn-lg">Enter Demo 2</a>
 	    </div>
 	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/images/pic2.png" class="thumbnail"/>
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
 	  
@@ -48,7 +48,7 @@
 		    <a href="${pageContext.servletContext.contextPath}/Merge" role="button" class="btn btn-textgrid btn-lg">Enter Demo 3</a>
 	    </div>
 	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/images/pic2.png" class="thumbnail"/>
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
 	  
@@ -59,7 +59,7 @@
 		    <a href="${pageContext.servletContext.contextPath}/Split" role="button" class="btn btn-textgrid btn-lg">Enter Demo 4</a>
 	    </div>
 	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/images/pic2.png" class="thumbnail"/>
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
 	  

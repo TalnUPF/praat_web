@@ -40,7 +40,7 @@ public class ModulesServlet extends HttpServlet{
 		request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 		request.setAttribute("textGridsData", TextgridsManager.getInstance().getWordsSamplesInfo());
 		
-		getServletContext().getRequestDispatcher("/ModulesForm.jsp")
+		getServletContext().getRequestDispatcher("/WEB-INF/views/jsp/ModulesForm.jsp")
 	    .forward(request, response);      
 	}
 	
@@ -50,10 +50,10 @@ public class ModulesServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		ServletContext context = getServletContext();
-		String tmpPath = context.getRealPath("/tmp");
+		String tmpPath = context.getRealPath("/resources/core/tmp");
 		SERVER_UPLOAD_LOCATION_FOLDER =  tmpPath + "/";
 		
-		String scriptsPath = context.getRealPath("/scripts");
+		String scriptsPath = context.getRealPath("/resources/core/scripts");
 		SERVER_SCRIPTS_FOLDER =  scriptsPath + "/";
 		
 		//We recover form parameters
@@ -65,7 +65,7 @@ public class ModulesServlet extends HttpServlet{
 			request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 			request.setAttribute("textGridsData", TextgridsManager.getInstance().getWordsSamplesInfo());
 			request.setAttribute("errorMessage", "You must select at least one module tu run.");
-			request.getRequestDispatcher("/ModulesForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/jsp/ModulesForm.jsp").forward(request, response);
 			return;
 		}
 		String justFinalTiers = request.getParameter("justFinalTiers");
@@ -85,7 +85,7 @@ public class ModulesServlet extends HttpServlet{
 			request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 			request.setAttribute("textGridsData", TextgridsManager.getInstance().getWordsSamplesInfo());
 			request.setAttribute("errorMessage", "No audio provided.");
-			request.getRequestDispatcher("/ModulesForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/jsp/ModulesForm.jsp").forward(request, response);
 			return;
 		}
 		boolean textgridFile = (textGridFilePart != null && textGridFilePart.getSize() > 0);
@@ -96,7 +96,7 @@ public class ModulesServlet extends HttpServlet{
 			request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 			request.setAttribute("textGridsData", TextgridsManager.getInstance().getWordsSamplesInfo());
 			request.setAttribute("errorMessage", "No TextGrid provided.");
-			request.getRequestDispatcher("/ModulesForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/jsp/ModulesForm.jsp").forward(request, response);
 			return;
 		}
 		
@@ -127,7 +127,7 @@ public class ModulesServlet extends HttpServlet{
 				request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 				request.setAttribute("textGridsData", TextgridsManager.getInstance().getWordsSamplesInfo());
 				request.setAttribute("errorMessage", "Unexpected error creating temporal directory.");
-				request.getRequestDispatcher("/ModulesForm.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/jsp/ModulesForm.jsp").forward(request, response);
 		        return;
 		    }        
 		}
@@ -136,7 +136,7 @@ public class ModulesServlet extends HttpServlet{
 		if(audioFile){
 			Utils.saveFile(audioFileContent, audioFilePath);
 		}else{
-			String audiosFolderPath = context.getRealPath("/samples/audio") + "/";
+			String audiosFolderPath = context.getRealPath("/resources/core/samples/audio") + "/";
 			String audioFileName = AudiosManager.getInstance().getAudiosInfo().get(audioSelection).getFileName();
 			Files.copy(Paths.get(audiosFolderPath + audioFileName), Paths.get(audioFilePath), REPLACE_EXISTING);
 		}
@@ -144,7 +144,7 @@ public class ModulesServlet extends HttpServlet{
 			if(textgridFile){
 				Utils.saveFile(textGridFileContent, textGridFilePath);
 			}else{
-				String textgridFolderPath = context.getRealPath("/samples/textgrid") + "/";
+				String textgridFolderPath = context.getRealPath("/resources/core/samples/textgrid") + "/";
 				String textgridFileName = TextgridsManager.getInstance().getWordsSamplesInfo().get(textgridSelection).getFileName();
 				Files.copy(Paths.get(textgridFolderPath + textgridFileName), Paths.get(textGridFilePath), REPLACE_EXISTING);
 			}
@@ -198,9 +198,9 @@ public class ModulesServlet extends HttpServlet{
 		//Forward to viewer
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Viewer");
 		String contextPath = context.getContextPath();
-		request.setAttribute("audioFile", contextPath + "/tmp/" + ref + "/" + ref + ".wav");
+		request.setAttribute("audioFile", contextPath + "/resources/core/tmp/" + ref + "/" + ref + ".wav");
 		request.setAttribute("resultFile", resultFilePath);
-		request.setAttribute("graphData", contextPath + "/tmp/" + ref + "/" + ref + ".graph");
+		request.setAttribute("graphData", contextPath + "/resources/core/tmp/" + ref + "/" + ref + ".graph");
 		request.setAttribute("tmpGeneratedFolder", ref);
 		dispatcher.forward(request, response);
 		

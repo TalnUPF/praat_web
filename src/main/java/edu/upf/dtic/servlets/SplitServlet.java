@@ -37,7 +37,7 @@ public class SplitServlet extends HttpServlet{
 		request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 		request.setAttribute("textGridsData", TextgridsManager.getInstance().getSplitSamplesInfo());
 		
-		getServletContext().getRequestDispatcher("/SplitForm.jsp")
+		getServletContext().getRequestDispatcher("/WEB-INF/views/jsp/SplitForm.jsp")
 	    .forward(request, response);      
 	}
 	
@@ -47,10 +47,10 @@ public class SplitServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		ServletContext context = getServletContext();
-		String tmpPath = context.getRealPath("/tmp");
+		String tmpPath = context.getRealPath("/resources/core/tmp");
 		SERVER_UPLOAD_LOCATION_FOLDER =  tmpPath + "/";
 		
-		String scriptsPath = context.getRealPath("/scripts");
+		String scriptsPath = context.getRealPath("/resources/core/scripts");
 		SERVER_SCRIPTS_FOLDER =  scriptsPath + "/";
 		
 		//We recover form parameters
@@ -71,7 +71,7 @@ public class SplitServlet extends HttpServlet{
 			request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 			request.setAttribute("textGridsData", TextgridsManager.getInstance().getSplitSamplesInfo());
 			request.setAttribute("errorMessage", "No TextGrid provided.");
-			request.getRequestDispatcher("/SplitForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/jsp/SplitForm.jsp").forward(request, response);
 			return;
 		}
 		
@@ -99,7 +99,7 @@ public class SplitServlet extends HttpServlet{
 		    	request.setAttribute("audioData", AudiosManager.getInstance().getAudiosInfo());
 		    	request.setAttribute("textGridsData", TextgridsManager.getInstance().getSplitSamplesInfo());
 				request.setAttribute("errorMessage", "Unexpected error creating temporal directory.");
-				request.getRequestDispatcher("/SplitForm.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/jsp/SplitForm.jsp").forward(request, response);
 		        return;
 		    }        
 		}
@@ -108,14 +108,14 @@ public class SplitServlet extends HttpServlet{
 		if(audioFile){
 			Utils.saveFile(audioFileContent, audioFilePath);
 		}else if(audioSelector){
-			String audiosFolderPath = context.getRealPath("/samples/audio") + "/";
+			String audiosFolderPath = context.getRealPath("/resources/core/samples/audio") + "/";
 			String audioFileName = AudiosManager.getInstance().getAudiosInfo().get(audioSelection).getFileName();
 			Files.copy(Paths.get(audiosFolderPath + audioFileName), Paths.get(audioFilePath), REPLACE_EXISTING);
 		}
 		if(textgridFile){
 			Utils.saveFile(textGridFileContent, textGridFilePath);
 		}else{
-			String textgridFolderPath = context.getRealPath("/samples/textgrid") + "/";
+			String textgridFolderPath = context.getRealPath("/resources/core/samples/textgrid") + "/";
 			String textgridFileName = TextgridsManager.getInstance().getSplitSamplesInfo().get(textgridSelection).getFileName();
 			Files.copy(Paths.get(textgridFolderPath + textgridFileName), Paths.get(textGridFilePath), REPLACE_EXISTING);
 		}
@@ -166,8 +166,8 @@ public class SplitServlet extends HttpServlet{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Viewer");
 		String contextPath = context.getContextPath();
 		if(audioFile || audioSelector){
-			request.setAttribute("audioFile", contextPath + "/tmp/" + ref + "/" + ref + ".wav");
-			request.setAttribute("graphData", contextPath + "/tmp/" + ref + "/" + ref + ".graph");
+			request.setAttribute("audioFile", contextPath + "/resources/core/tmp/" + ref + "/" + ref + ".wav");
+			request.setAttribute("graphData", contextPath + "/resources/core/tmp/" + ref + "/" + ref + ".graph");
 		}
 		request.setAttribute("resultFile", resultFilePath);
 		request.setAttribute("tmpGeneratedFolder", ref);

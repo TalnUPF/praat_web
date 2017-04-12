@@ -9,6 +9,10 @@
 		<param-name>praatLocation</param-name>
 		<param-value>/home/ivan/svnTaln/Taln-patents/OtherProjects/praat-master3/Release/praat-master</param-value>
 	</context-param>
+	
+	<welcome-file-list>
+	    <welcome-file>/WEB-INF/views/jsp/index.jsp</welcome-file>
+	</welcome-file-list>
 
 	<servlet>
 		<servlet-name>Modules</servlet-name>

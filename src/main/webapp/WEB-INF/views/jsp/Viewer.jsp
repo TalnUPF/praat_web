@@ -17,8 +17,8 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<link href="viewer.css" rel="stylesheet" type="text/css"/>
-		<link href="general.css" rel="stylesheet" type="text/css"/>
+		<link href="${pageContext.servletContext.contextPath}/resources/core/css/viewer.css" rel="stylesheet" type="text/css"/>
+		<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
 		<title>Praat viewer</title>
 		
 	</head>
@@ -34,7 +34,7 @@
 		<div class="container">
 			<div class="page-header">
 			    <h1 class="left">Viewer</h1>
-			     <a href="${pageContext.servletContext.contextPath}/index.jsp" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
+			     <a href="${pageContext.servletContext.contextPath}/" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
 			</div>
 			<div class="page-subheader">
 			    <h3 class="left">
@@ -194,9 +194,9 @@
 		</div>
 
 		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script> -->
-		<script src="wavesurfer.js"></script>
-		<script src="wavesurfer.regions.js"></script>
-		<script src="wavesurfer.timeline.js"></script>
+		<script src="${pageContext.servletContext.contextPath}/resources/core/js/wavesurfer.js"></script>
+		<script src="${pageContext.servletContext.contextPath}/resources/core/js/wavesurfer.regions.js"></script>
+		<script src="${pageContext.servletContext.contextPath}/resources/core/js/wavesurfer.timeline.js"></script>
 		<script src="//d3js.org/d3.v3.js"></script>
 		<script type="text/javascript">
 			<%
@@ -504,11 +504,11 @@
 				document.getElementById("downloadForm").submit();
 				$("#download").attr("disabled", true);
 				 setTimeout(function () {
-			        document.location.pathname = "${pageContext.servletContext.contextPath}/index.jsp";
+			        document.location.pathname = "${pageContext.servletContext.contextPath}/";
 			    }, 1000);
 			}
 		</script>
-		<script src="viewer.js"></script>
+		<script src="${pageContext.servletContext.contextPath}/resources/core/js/viewer.js"></script>
 		
 	</body>
 </html>

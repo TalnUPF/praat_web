@@ -9,15 +9,15 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="forms.css" rel="stylesheet" type="text/css"/>
-	<link href="general.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
 	<title>Demo 4: Splitting Features in Tiers</title>
 </head>
 <body>
 	<div class="container">
 		<div class="page-header">
 		    <h1 class="left">Demo 4: Splitting Features in Tiers</h1>
-		     <a href="${pageContext.servletContext.contextPath}/index.jsp" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
+		     <a href="${pageContext.servletContext.contextPath}/" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
 		</div>
 		<div class="page-subheader">
 		    <h3 class="left">This functionality reverses the feature annotation to separate tiers. A TextGrid annotated with features is split in tiers. Segments must contain the same number of features located in the same position. Feature labels will be used as tier names and feature values as segment labels.</h3>
@@ -78,7 +78,7 @@
 					<div class="col-sm-2"></div>
 	  				<div class="col-sm-5">
 	  					<div class="praat-group">
-	  						<img src="${pageContext.servletContext.contextPath}/images/pic1.png" class="thumbnail"/>
+	  						<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic1.png" class="thumbnail"/>
 	  					</div>
 	  				</div>
 				</div>
@@ -96,7 +96,7 @@
 		</div>
 	</div>
 	
-	<script src="split.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/core/js/split.js"></script>
 	
 </body>
 </html>

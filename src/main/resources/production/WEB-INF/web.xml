@@ -9,6 +9,10 @@
 		<param-name>praatLocation</param-name>
 		<param-value>/usr/local/bin/praat-master</param-value>
 	</context-param>
+	
+	<welcome-file-list>
+	    <welcome-file>/WEB-INF/views/jsp/index.jsp</welcome-file>
+	</welcome-file-list>
 
 	<servlet>
 		<servlet-name>Modules</servlet-name>

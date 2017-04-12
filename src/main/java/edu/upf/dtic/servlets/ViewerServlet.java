@@ -49,7 +49,7 @@ public class ViewerServlet extends HttpServlet {
 		}
 		request.setAttribute("tiers", tiers);
 		
-		getServletContext().getRequestDispatcher("/Viewer.jsp").forward(request, response);  
+		getServletContext().getRequestDispatcher("/WEB-INF/views/jsp/Viewer.jsp").forward(request, response);  
 		tiers.clear();
 	}
 
@@ -61,7 +61,7 @@ public class ViewerServlet extends HttpServlet {
 			String ref = request.getParameter("ref");
 			
 			ServletContext context = getServletContext();
-			String tmpPath = context.getRealPath("/tmp");
+			String tmpPath = context.getRealPath("/resources/core/tmp");
 			String temporalDirectory = tmpPath + "/" + ref + "/";
 			String resultFilePath = temporalDirectory + ref + "_result.TextGrid";
 			

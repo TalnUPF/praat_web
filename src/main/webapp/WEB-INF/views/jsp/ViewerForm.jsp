@@ -9,21 +9,21 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="forms.css" rel="stylesheet" type="text/css"/>
-	<link href="general.css" rel="stylesheet" type="text/css"/>
-	<title>Demo 3: Merging Tiers to Features</title>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
+	<title>Demo 1: Visualization</title>
 </head>
 <body>
 	<div class="container">
 		<div class="page-header">
-		    <h1 class="left">Demo 3: Merging Tiers to Features</h1>
-		     <a href="${pageContext.servletContext.contextPath}/index.jsp" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
+		    <h1 class="left">Demo 1: Visualization</h1>
+		     <a href="${pageContext.servletContext.contextPath}/" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
 		</div>
 		<div class="page-subheader">
-		    <h3 class="left">Users can upload their own TextGrid files including duplicated tiers with different information in each segment (point or interval). Tier names will be used as feature labels and segment labels as feature values. Users must indicate the tier number at which they want the features to be annotated and the range of tiers which are to be converted to features.</h3>
+		    <h3 class="left">Users can either upload their own audio and TextGrid files or visualize available demo files.</h3>
 		</div>
 		<div class="form" id="formDiv">
-			<form action="Merge" method="post" enctype="multipart/form-data" id="runForm">
+			<form action="ViewerForm" method="post" enctype="multipart/form-data" id="runForm">
 				<div class="row">
 	  				<div class="col-sm-5">
 		  				<div class="praat-group">
@@ -69,33 +69,14 @@
 								</select>
 			  				</div>
 			  			</div>
-			  			<div class="praat-group">
-							<label for="tierNumber">Select tier number to write features:</label>
-					    	<input type="text" class="form-control" id="tierNumber" name="tierNumber">
-					  	</div>
-					  	<div class="praat-group">
-							<label for="fromTierNumber">Select tier range to extract features:</label>
-							<div class="row">
-								<div class="col-sm-5">
-									From tier
-							    	<input type="text" class="form-control" id="fromTierNumber" name="fromTierNumber">
-							  	</div>
-							  	<div class="col-sm-2"></div>
-							  	<div class="col-sm-5">
-									To tier
-							    	<input type="text" class="form-control" id="toTierNumber" name="toTierNumber">
-							  	</div>
-						  	</div>
-						</div>
 					</div>
 					<div class="col-sm-2"></div>
 	  				<div class="col-sm-5">
 	  					<div class="praat-group">
-	  						<img src="${pageContext.servletContext.contextPath}/images/pic1.png" class="thumbnail"/>
+	  						<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic1.png" class="thumbnail"/>
 	  					</div>
 	  				</div>
 				</div>
-				
 				<div class="row">
 					<div class="col-sm-7"></div>
 					<div class="col-sm-5">
@@ -109,7 +90,7 @@
 		</div>
 	</div>
 	
-	<script src="merge.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/core/js/viewerForm.js"></script>
 	
 </body>
 </html>

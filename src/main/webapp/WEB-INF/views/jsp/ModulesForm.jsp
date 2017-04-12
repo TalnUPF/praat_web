@@ -9,15 +9,15 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="forms.css" rel="stylesheet" type="text/css"/>
-	<link href="general.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
 	<title>Demo 2: Modular Scripting</title>
 </head>
 <body>
 	<div class="container">
 		<div class="page-header">
 		    <h1 class="left">Demo 2: Modular Scripting</h1>
-		     <a href="${pageContext.servletContext.contextPath}/index.jsp" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
+		     <a href="${pageContext.servletContext.contextPath}/" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
 		</div>
 		<div class="page-subheader">
 		    <h3 class="left">
@@ -142,8 +142,8 @@
 		</div>
 	</div>
 	
-	<script src="Sortable.js"></script>
-	<script src="modules.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/core/js/Sortable.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/core/js/modules.js"></script>
 	
 </body>
 </html>
