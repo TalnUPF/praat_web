@@ -7,7 +7,8 @@
 
 	<context-param>
 		<param-name>praatLocation</param-name>
-		<param-value>/home/ivan/svnTaln/Taln-patents/OtherProjects/praat-master3/Release/praat-master</param-value>
+		<!-- param-value>/home/ivan/svnTaln/Taln-patents/OtherProjects/praat-master3/Release/praat-master</param-value-->
+		<param-value>/home/ivan/git/praat/praat</param-value>
 	</context-param>
 	
 	<welcome-file-list>
