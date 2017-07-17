@@ -4,30 +4,61 @@
 	<%@ page import="java.util.HashMap" %>
 	<%@ page import="edu.upf.dtic.classes.FileFormInfo" %>
 	<%@ page import="java.util.Map.Entry" %>
-
+	<%@page import ="org.json.simple.JSONArray" %>
+	<%@page import ="org.json.simple.JSONObject" %>
+	<%@page import ="org.json.simple.parser.JSONParser" %>
+	<%@page import ="org.json.simple.parser.ParseException" %>
+	<%@page import ="java.io.FileNotFoundException" %>
+	<%@page import ="java.io.FileReader" %>
+	<%@page import ="java.io.IOException" %>
+	<%@page import ="java.util.Iterator" %> 
+	<%@page import ="java.io.File" %>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="${pageContext.servletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.se
+	rvletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
 	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
 	<title>Demo 2: Modular Scripting</title>
 </head>
 <body>
+
+	<%
+	String fileName=request.getParameter("file");
+	File file = request.getRealPath("${pageContext.servletContext.contextPath}/resources/demos/"+fileName);  
+	// get name and description of the demo
+	JSONParser parser = new JSONParser();
+
+	        try {
+
+	            Object obj = parser.parse(new FileReader(file));
+
+	            JSONObject jsonObject = (JSONObject) obj;
+	            String name = (String) jsonObject.get("name");
+	            String description = (String) jsonObject.get("description");
+	            String scriptsPath = (String) jsonObject.get("sciptsPath");
+	            String audiosPath = (String) jsonObject.get("audiosPath");
+	            String textGridsPath = (String) jsonObject.get("textGridsPath");
+
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	 %>
 	<div class="container">
 		<div class="page-header">
-		    <h1 class="left">Demo 2: Modular Scripting</h1>
+		    <h1 class="left"><% System.out.print(name);  %></h1>
 		     <a href="${pageContext.servletContext.contextPath}/" class="right back">Back to Menu <span class="glyphicon glyphicon-hand-left"></span></a>
 		</div>
 		<div class="page-subheader">
-		    <h3 class="left">
-		    	A prosody tagger implemented as a modular pipeline is used as an example of modular scripting using features. Users can upload their own speech files for segmentation in prosodic phrases and prominence detection or use sample files. Two possible configurations are shown:
-		    	<ul class="with-style">
-				    <li>with prediction on words segments: a TextGrid with the word segmentation on tier number 1 must be uploaded for this configuration</li>
-				    <li>with prediction on raw speech: prominence is outputted as peak points.</li>
-			    </ul>
-		    	Users can furthermore select if they want to visualize all tiers generated from each module or only the final prediction (i.e., prosodic phrases and prominence).
-		    </h3>
+		    <div class="left">
+		    	<% System.out.print(description);  %>
+		    </div>
 		</div>
 		<div class="form" id="formDiv">
 			<form action="Modules" method="post" enctype="multipart/form-data" id="runForm">
@@ -42,31 +73,19 @@
 							 	<select class="form-control" id="audioSel" name="audioSelection">
 							 		<option value="" selected="selected">Select an option</option>
 							 		<%
-								 		HashMap<String, FileFormInfo> audioData = (HashMap<String, FileFormInfo>)request.getAttribute("audioData");
-										if(audioData != null){
-											for(Entry<String, FileFormInfo> entry : audioData.entrySet()) {
-									   			String key = entry.getKey();
-									   			String value = entry.getValue().getDescription();
-									   			%><option value="<%=key%>"><%=value%></option><%
+								 		File audios = request.getRealPath("${pageContext.servletContext.contextPath}/"+audiosPath);  
+								 		File[] list = audios.listFiles();
+								 		for (File file : list){
+								 			// read the file, File contents in Json format
+								 			String fileName=file.getName();
+									   			%><option value="<%=fileName%>"><%=fileName%></option><%
 											}
-										}
 							 		%>
 								</select>
 							</div>
 						</div>
 						
-						<div class="row praat-group" >
-							<div class="col-sm-12">
-								<label for="modulesSelector">Select a pipeline configuration:</label>
-							</div>
-			  				<div class="col-sm-6">
-			  					<input type="button" class="btn btn-textgrid btn-lg" onClick="def1();" value="Word Segments"/>
-			  				</div>
-			  				<div class="col-sm-6">
-			  					<input type="button" class="btn btn-textgrid btn-lg right" onClick="def2();" value="Raw Speech"/>
-			  				</div>
-						</div>
-						<div class="praat-hidden" id="textgridDiv">
+						<div  id="textgridDiv">
 							<div class="praat-group">
 				  				<div class="related-praat-group">
 									<label for="textGridFile">Upload your TextGrid file or select a sample file: </label> 
@@ -76,21 +95,20 @@
 								 	<select class="form-control" id="tgSel" name="textgridSelection">
 								 		<option value="" selected="selected">Select an option</option>
 								 		<%
-									 		HashMap<String, FileFormInfo> textGridData = (HashMap<String, FileFormInfo>)request.getAttribute("textGridsData");
-											if(textGridData != null){
-												for(Entry<String, FileFormInfo> entry : textGridData.entrySet()) {
-										   			String key = entry.getKey();
-										   			String value = entry.getValue().getDescription();
-										   			%><option value="<%=key%>"><%=value%></option><%
-												}
-											}
-								 		%>
+								 		File textGrids = request.getRealPath("${pageContext.servletContext.contextPath}/"+textGridsPath);  
+								 		list = textGrids.listFiles();
+								 		for (File file : list){
+								 			// read the file, File contents in Json format
+								 			String fileName=file.getName();
+									   			%><option value="<%=fileName%>"><%=fileName%></option><%
+										}
+							 		%>
 									</select>
 				  				</div>
 				  			</div>
 						</div>
 				
-						<div class="praat-hidden" id="checkboxDiv">
+						<div  id="checkboxDiv">
 			  				<div class="praat-group">
 			  					<label for="justFinalTiers">Select visualization mode:</label>
 				  				<div class="checkbox">
@@ -113,12 +131,12 @@
 								<div class="layer title">Available modules</div>
 								<ul id="available" class="block__list block__list_words">
 								<%
-									HashMap<String, FileFormInfo> scriptsData = (HashMap<String, FileFormInfo>)request.getAttribute("scriptsData");
-									if(scriptsData != null){
-										for(Entry<String, FileFormInfo> entry : scriptsData.entrySet()) {
-								   			String key = entry.getKey();
-											out.println("<li data-id=\"" + key + "\"><span class='drag-handle'>&#9776;</span>" + entry.getValue().getDescription() + "</li>");
-										}
+						 		File spripts = request.getRealPath("${pageContext.servletContext.contextPath}/"+scriptsPath); 
+						 		list = scripts.listFiles();
+						 		for (File file : list){
+						 			// read the file, File contents in Json format
+						 			String fileName=file.getName();
+										out.println("<li data-id=\"" + fileName + "\"><span class='drag-handle'>&#9776;</span>" + fileName + "</li>");
 									}
 								%>
 								</ul>

@@ -1,5 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8
+%>
+<%@page import="java.io.*" %>
+<%@page import="java.util.*"%>
+<%@page import ="org.json.simple.JSONArray" %>
+<%@page import ="org.json.simple.JSONObject" %>
+<%@page import ="org.json.simple.parser.JSONParser" %>
+<%@page import ="org.json.simple.parser.ParseException" %>
+<%@page import ="java.io.FileNotFoundException" %>
+<%@page import ="java.io.FileReader" %>
+<%@page import ="java.io.IOException" %>
+<%@page import ="java.util.Iterator" %> 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,7 +74,56 @@
 	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
-	  
+		
+	<%
+	File demos = request.getRealPath("${pageContext.servletContext.contextPath}/resources/demos";  
+	File[] list = demos.listFiles();
+	for (File file : list){
+		// read the file, File contents in Json format
+		String fileName=file.getName();
+		// get name and description of the demo
+		JSONParser parser = new JSONParser();
+
+	        try {
+
+	            Object obj = parser.parse(new FileReader(file));
+
+	            JSONObject jsonObject = (JSONObject) obj;
+	            System.out.println(jsonObject);
+
+	            String name = (String) jsonObject.get("name");
+	            
+	            String description = (String) jsonObject.get("description");
+
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }	
+	
+		// write the name and description
+		// do a call to the generalDemo.jsp with the get parameter as the file
+		%>
+	  <div class="jumbotron">
+	    <div class="left-content">
+		    <h2> <% System.out.println(name); %></h2>
+		    <p>  <% System.out.println(description); %>
+		    </p>
+		    <a href="${pageContext.servletContext.contextPath}/generalDemo?file=<% System.out.print(fileName; %>" role="button" class="btn btn-textgrid btn-lg">Enter Demo 4</a>
+	    </div>
+	    <div class="right-content">
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
+	    </div>
+	  </div>
+   <% 
+	}
+	%>
+
+  
 	</div>
+
+	
 </body>
 </html>
