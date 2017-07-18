@@ -1,19 +1,32 @@
 # Praat on the Web
-Web implementation of the extension of Praat for feature annotation also available for local use and downloadable separately from the following repository https://github.com/monikaUPF/featureAnnotationforPraat. 
 
-A tutorial on the use of the basic functions of the web implementation of Praat for feature annotations is available in the following link https://youtu.be/sJXu15Dskjs
+Praat on the Web provides a web interface for Praat (http://www.fon.hum.uva.nl/praat/). It is a client server deployment of Praat, where Praat runs in the server with a web interface that allows users to upload sound files and process them with the scripts selected by the system administrator. 
+
+The web interface does not include the full Praat functionality. e.g does not allow to run user scripts which could lead to serius security issues. 
+
+A running example of Praat on the web can be found in http://taln.upf.edu/PraatOnTheWeb 
 
 The link to the web application is http://kristina.taln.upf.edu/praatweb/ and it is described in our publication (Domínguez et al. 2016)
 
-###############
-## Content
-###############
 
-This repository includes source code and documentation.
+  
+### Demos
 
-#################
-## Specifications
-#################
+* A demo is composed of the following elements defined by the administrator: 
+	- Some sample sound files (with maybe some input textgrids)
+	- A set of scripts to run on the selected sound file (and textgrid) . The scripts are run in alphabetical order (so take it into account when naming them, e.g. 1_... 2_... )  
+
+* The user selects the sound file (or uploads her own one), 
+* The user checks the scripts to run and runs them,
+* The system shows the result containing 
+	- the sound file, 
+	- the intensity and pitch
+	- the tiers of the final textgrid.
+	  
+* The user can then, navigate through the sound file, check the annotations or listen the sound.
+* The system uses another improvement that we did to Praat. The capacity to show multiple values (a features vector) for each interval or time point.  
+  
+## Specifications  
 
 The application uses the MVC pattern with Java servlet model and is mainly developed in Java, JSP with style sheets and JavaScript. Using the following existent external libraries:
   - jQuery
@@ -21,20 +34,41 @@ The application uses the MVC pattern with Java servlet model and is mainly devel
   - wavesurfer.js
   - Sortable
 
+The project is a maven project and to generate the Ware file do 
 
-###############
-## Folder Structure
-###############
+>mvn package 
+  
+### Folder Structure
+
 
 PraatWeb folder includes two subdirectories:
-  - src/edu/upf/dtic: contains all Java files divided in servlets and classes folders
-  - WebContent: contains all JSP, style sheets and JavaScript files, plus several folders:
+* src/edu/upf/dtic: contains all Java files divided in servlets and classes folders
+* WebContent: contains all JSP, style sheets and JavaScript files, plus several folders:
     - images: pictures used in the web
     - META-INF: the MANIFEST.MF file
-    - samples: audio and TextGrid files used as samples in the web
-    - scripts: all the Praat scripts used in the web demos
     - tmp: empty folder used to temporary save the content generated via web by the users
     - WEB-INF: web.xml file
+    - demos: a folder with one file for each different demo
+    - demoData: Contains folders to store, sound, TextGrid files and Praat Scripts to be used in the different demos.  
+    
+# Installation
+
+The best to do the installation is to clone this repository. Define the demos (as explained below) and do the 
+
+> mvn package
+
+## demo definition
+
+  
+Each demo is defined in a file on the demos folder, containging a JSON object with the following information:
+- demo name
+- description (it can include some html)
+- Folder with some sample sound files (the folder can be empty)
+- Textgrids (true/false) to indicate if the processing needs a textgrid
+- Folder with textgrids (the folder can be empty)
+- Folder with scripts to apply at the sound file (if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
+
+See the demos folder for some sample demos.
 
 
 #####################
