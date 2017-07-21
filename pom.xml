@@ -27,6 +27,7 @@
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>${glassfish.jersey.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -38,10 +39,17 @@
 			<artifactId>jersey-media-multipart</artifactId>
 			<version>${glassfish.jersey.version}</version>
 		</dependency>
-		<dependency>
+		
+		<!-->dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1</version>
+		</dependency-->
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.8.7</version>
 		</dependency>
 	</dependencies>
 	

@@ -4,14 +4,14 @@
 <html>
 	<head>
 		<%@ page import="java.util.ArrayList" %>
-		<%@ page import="edu.upf.dtic.classes.Tier" %>
-		<%@ page import="edu.upf.dtic.classes.IntervalTier" %>
-		<%@ page import="edu.upf.dtic.classes.PointTier" %>
-		<%@ page import="edu.upf.dtic.classes.Segment" %>
-		<%@ page import="edu.upf.dtic.classes.Interval" %>
-		<%@ page import="edu.upf.dtic.classes.Point" %>
-		<%@ page import="edu.upf.dtic.classes.Pair" %>
-		<%@ page import="edu.upf.dtic.classes.Utils" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.Tier" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.IntervalTier" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.PointTier" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.Segment" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.Interval" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.Point" %>
+		<%@ page import="edu.upf.taln.praat_web.classes.Pair" %>
+		<%@ page import="edu.upf.taln.praat_web.utils.Utils" %>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">

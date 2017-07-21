@@ -1,0 +1,16 @@
+{
+	"menuName": "Modular Scripting Using Features (Raw audio)",
+	"menuDescription": "This demo includes a prosody tagger which has been scripting in as a modular pipeline, thanks to the functionality of feature annotation. Users can perform prosodic phrases and prominence prediction on raw audio. Sample files are also available.",
+	"name": "Demo: Modular Scripting",
+	"description": "A prosody tagger implemented as a modular pipeline is used as an example of modular scripting using features. Users can upload their own speech files for segmentation in prosodic phrases and prominence detection or use sample files.\n<br/>Prominence is outputted as peak points.\n<br/>Users can furthermore select if they want to visualize all tiers generated from each module or only the final prediction (i.e., prosodic phrases and prominence).",
+	"audiosFolder": "/home/ivan/git/praat-web/src/main/webapp/resources/core/demos/modularRaw/audios",
+	"useTextGrid": false,
+	"scriptsFolder": "/home/ivan/git/praat-web/src/main/webapp/resources/core/demos/modularRaw/scripts",
+	"scriptsInfo":[
+		{ "file":"mod01.praat", "description":"Module 1: Intensity peak detection", "defaultSort":1},
+		{ "file":"mod02.praat", "description":"Module 2: Intensity valley detection", "defaultSort":2},
+		{ "file":"mod03.praat", "description":"Module 3: Feature annotation", "defaultSort":3},
+		{ "file":"mod05b.praat", "description":"Module 4: PPh boundary detection", "defaultSort":4},
+		{ "file":"mod06b.praat", "description":"Module 5: PPh prominence detection", "params":"1","defaultSort":5}
+	]
+}

@@ -11,48 +11,37 @@
 		<param-value>/home/ivan/git/praat/praat</param-value>
 	</context-param>
 	
-	<welcome-file-list>
-	    <welcome-file>/WEB-INF/views/jsp/index.jsp</welcome-file>
-	</welcome-file-list>
-
 	<servlet>
-		<servlet-name>Modules</servlet-name>
-		<servlet-class>edu.upf.dtic.servlets.ModulesServlet</servlet-class>
+	    <servlet-name>Main</servlet-name>
+	    <servlet-class>edu.upf.taln.praat_web.controllers.MainServlet</servlet-class>
+  	</servlet>
+	<servlet-mapping>
+	  <servlet-name>Main</servlet-name>
+	  <url-pattern></url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>General</servlet-name>
+		<servlet-class>edu.upf.taln.praat_web.controllers.GeneralServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Modules</servlet-name>
-		<url-pattern>/Modules</url-pattern>
+		<servlet-name>General</servlet-name>
+		<url-pattern>/General</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GeneralForm</servlet-name>
+		<servlet-class>edu.upf.taln.praat_web.controllers.GeneralFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GeneralForm</servlet-name>
+		<url-pattern>/GeneralForm</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Viewer</servlet-name>
-		<servlet-class>edu.upf.dtic.servlets.ViewerServlet</servlet-class>
+		<servlet-class>edu.upf.taln.praat_web.controllers.ViewerServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Viewer</servlet-name>
 		<url-pattern>/Viewer</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>Split</servlet-name>
-		<servlet-class>edu.upf.dtic.servlets.SplitServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Split</servlet-name>
-		<url-pattern>/Split</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Merge</servlet-name>
-		<servlet-class>edu.upf.dtic.servlets.MergeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Merge</servlet-name>
-		<url-pattern>/Merge</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>ViewerForm</servlet-name>
-		<servlet-class>edu.upf.dtic.servlets.ViewerFormServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ViewerForm</servlet-name>
-		<url-pattern>/ViewerForm</url-pattern>
-	</servlet-mapping>
+	
 </web-app>

@@ -1,16 +1,8 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8
-%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.io.*" %>
 <%@page import="java.util.*"%>
-<%@page import ="org.json.simple.JSONArray" %>
-<%@page import ="org.json.simple.JSONObject" %>
-<%@page import ="org.json.simple.parser.JSONParser" %>
-<%@page import ="org.json.simple.parser.ParseException" %>
-<%@page import ="java.io.FileNotFoundException" %>
-<%@page import ="java.io.FileReader" %>
-<%@page import ="java.io.IOException" %>
 <%@page import ="java.util.Iterator" %> 
+<%@page import ="edu.upf.taln.praat_web.classes.DemoData" %> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,99 +24,30 @@
 	  <div class="page-subheader">
 		<h3 class="left">This website demonstrates two Praat on the Web functionalities: web visualization (demo 1) and modular scripting using features (demo 2). Two further demos on feature annotation are available for merging tiers as feature vectors (demo 3) and splitting features into tiers (demo 4).<br/>To access each demo, click on the Enter Demo button.</h3>
 	  </div>
-	  <div class="jumbotron">
-	    <div class="left-content">
-		    <h2>Visualization Tool</h2>
-		    <p>This functionality allows users to upload their own speech samples and TextGrids for online visualization and audio playback. Sample files are also available.</p>
-		    <a href="${pageContext.servletContext.contextPath}/ViewerForm" role="button" class="btn btn-textgrid btn-lg">Enter Demo 1</a>
-	    </div>
-	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
-	    </div>
-	  </div>
-	  
-	  <div class="jumbotron">
-	    <div class="left-content">
-		    <h2>Modular Scripting Using Features</h2>
-		    <p>This demo includes a prosody tagger which has been scripting in as a modular pipeline, thanks to the functionality of feature annotation. Users can test two possible pipeline configurations to perform prosodic phrases and prominence prediction on word segments or on raw audio. A TextGrid with the word segmentation of the file needs to be uploaded in case the prediction on word segments is selected. Sample files are also available.</p>
-		    <a href="${pageContext.servletContext.contextPath}/Modules" role="button" class="btn btn-textgrid btn-lg">Enter Demo 2</a>
-	    </div>
-	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
-	    </div>
-	  </div>
-	  
-	  <div class="jumbotron">
-	    <div class="left-content">
-		    <h2>Feature Annotation: Merging Tiers</h2>
-		    <p>This functionality allows to compare visualization capabilities of standard Praat annotation and feature annotation. Users can upload their TextGrid files containing several tiers (with the same number of intervals) to be merged as features to one main tier or run sample file demos.</p>
-		    <a href="${pageContext.servletContext.contextPath}/Merge" role="button" class="btn btn-textgrid btn-lg">Enter Demo 3</a>
-	    </div>
-	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
-	    </div>
-	  </div>
-	  
-	  <div class="jumbotron">
-	    <div class="left-content">
-		    <h2>Feature Annotation: Splitting Features</h2>
-		    <p>This functionality allows reversing feature annotation. Users can upload previously generated TextGrids annotated with features (i.e., from the prosody tagger in demo 2) and split features to different intervals.</p>
-		    <a href="${pageContext.servletContext.contextPath}/Split" role="button" class="btn btn-textgrid btn-lg">Enter Demo 4</a>
-	    </div>
-	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
-	    </div>
-	  </div>
 		
 	<%
-	File demos = request.getRealPath("${pageContext.servletContext.contextPath}/resources/demos";  
-	File[] list = demos.listFiles();
-	for (File file : list){
-		// read the file, File contents in Json format
-		String fileName=file.getName();
-		// get name and description of the demo
-		JSONParser parser = new JSONParser();
+	List<DemoData> demos = (List<DemoData>)request.getAttribute("demos");
+	for (DemoData demo : demos){
 
-	        try {
-
-	            Object obj = parser.parse(new FileReader(file));
-
-	            JSONObject jsonObject = (JSONObject) obj;
-	            System.out.println(jsonObject);
-
-	            String name = (String) jsonObject.get("name");
-	            
-	            String description = (String) jsonObject.get("description");
-
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	        }	
-	
-		// write the name and description
-		// do a call to the generalDemo.jsp with the get parameter as the file
-		%>
+	%>
 	  <div class="jumbotron">
 	    <div class="left-content">
-		    <h2> <% System.out.println(name); %></h2>
-		    <p>  <% System.out.println(description); %>
-		    </p>
-		    <a href="${pageContext.servletContext.contextPath}/generalDemo?file=<% System.out.print(fileName; %>" role="button" class="btn btn-textgrid btn-lg">Enter Demo 4</a>
+		    <h2><%=demo.getMenuName()%></h2>
+		    <p><%=demo.getMenuDescription()%></p>
+		    <form action="GeneralForm" method="post" enctype="multipart/form-data" id="runForm">
+		    	<input type="hidden" name="demo" value="<%=demo.getFilePath()%>"/>
+		    	<button type="submit" class="btn btn-textgrid btn-lg">Enter <%=demo.getMenuName()%></button>
+	    	</form>
 	    </div>
 	    <div class="right-content">
 	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
 	    </div>
 	  </div>
-   <% 
+	<%
 	}
 	%>
 
-  
 	</div>
 
-	
 </body>
 </html>
