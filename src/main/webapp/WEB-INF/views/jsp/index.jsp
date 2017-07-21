@@ -40,7 +40,7 @@
 	    	</form>
 	    </div>
 	    <div class="right-content">
-	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/pic2.png" class="thumbnail"/>
+	    	<img src="${pageContext.servletContext.contextPath}/resources/core/images/praat_on_the_web.png" class="thumbnail"/>
 	    </div>
 	  </div>
 	<%
