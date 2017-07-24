@@ -14,10 +14,10 @@ The link to the web application is http://kristina.taln.upf.edu/praatweb/ and it
 
 * A demo is composed of the following elements defined by the administrator: 
 	- Some sample sound files (with maybe some input textgrids)
-	- A set of scripts to run on the selected sound file (and textgrid) . The scripts are run in alphabetical order (so take it into account when naming them, e.g. 1_... 2_... )  
+	- A set of scripts to run on the selected sound file (and textgrid). Scripts order can be specified in the configuration file.
 
 * The user selects the sound file (or uploads her own one), 
-* The user checks the scripts to run and runs them,
+* The user checks and sorts the scripts to run and runs them,
 * The system shows the result containing 
 	- the sound file, 
 	- the intensity and pitch
@@ -34,22 +34,21 @@ The application uses the MVC pattern with Java servlet model and is mainly devel
   - wavesurfer.js
   - Sortable
 
-The project is a maven project and to generate the Ware file do 
+The project is a maven project and to generate the War file do 
 
 >mvn package 
   
 ### Folder Structure
 
-
 PraatWeb folder includes two subdirectories:
-* src/edu/upf/dtic: contains all Java files divided in servlets and classes folders
+* src/main/java/edu/upf/taln/praat_web: contains all Java files divided in controllers, classes and utils folders
 * WebContent: contains all JSP, style sheets and JavaScript files, plus several folders:
     - images: pictures used in the web
     - META-INF: the MANIFEST.MF file
     - tmp: empty folder used to temporary save the content generated via web by the users
     - WEB-INF: web.xml file
-    - demos: a folder with one file for each different demo
-    - demoData: Contains folders to store, sound, TextGrid files and Praat Scripts to be used in the different demos.  
+    - demos: a folder with one folder per demo, containing a configuration file each
+    - demoData: Contains folders to store, sound, TextGrid files and Praat Scripts to be used in the different demos
     
 # Installation
 
@@ -59,17 +58,26 @@ The best to do the installation is to clone this repository. Define the demos (a
 
 ## demo definition
 
-  
-Each demo is defined in a file on the demos folder, containging a JSON object with the following information:
-- demo name
-- description (it can include some html)
+Each demo is defined in its own folder on the demos folder, containing a JSON object (config.json) with the following information:
+- Menu name
+- Menu description (it can include some html)
+- Demo name
+- Description (it can include some html)
 - Folder with some sample sound files (the folder can be empty)
 - Textgrids (true/false) to indicate if the processing needs a textgrid
 - Folder with textgrids (the folder can be empty)
 - Folder with scripts to apply at the sound file (if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
+- Array with scripts information. All scripts that are to be available in the demo must have their entry here. The specified fields are: file name, descriptive name, parameters taken (optional), and default order (optional). 
 
 See the demos folder for some sample demos.
 
+### Scripts restrictions
+
+In order for the scripts to properly run within the application a few things must be taken into account:
+- All scripts must take the same two fixed parameters at the beginning (directory and basename), additional parameters are optional.
+- The intended final script on a pipeline must ensure to write the resulting Textgrid on the given directory with the given basename plus "_result.TextGrid"
+
+See the scripts within the demos folders for some samples. 
 
 #####################
 ## References and Citation
