@@ -22,7 +22,7 @@
 	  	<img src="${pageContext.servletContext.contextPath}/resources/core/images/TALN.png" class="logo"/>
 	  </div>
 	  <div class="page-subheader">
-		<h3 class="left">This website demonstrates two Praat on the Web functionalities: web visualization (demo 1) and modular scripting using features (demo 2). Two further demos on feature annotation are available for merging tiers as feature vectors (demo 3) and splitting features into tiers (demo 4).<br/>To access each demo, click on the Enter Demo button.</h3>
+		<h3 class="left">This website demonstrates two Praat on the Web functionalities: web visualization and modular scripting using features. Two further demos on feature annotation are available for merging tiers as feature vectors and splitting features into tiers.<br/>To access each demo, click on the Enter button.</h3>
 	  </div>
 		
 	<%

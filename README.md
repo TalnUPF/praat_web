@@ -63,10 +63,10 @@ Each demo is defined in its own folder on the demos folder, containing a JSON ob
 - Menu description (it can include some html)
 - Demo name
 - Description (it can include some html)
-- Folder with some sample sound files (the folder can be empty)
+- Folder with some sample sound files (relative to demo folder)(the folder can be empty)
 - Textgrids (true/false) to indicate if the processing needs a textgrid
-- Folder with textgrids (the folder can be empty)
-- Folder with scripts to apply at the sound file (if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
+- Folder with textgrids (relative to demo folder)(the folder can be empty)
+- Folder with scripts to apply at the sound file (relative to demo folder)(if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
 - Array with scripts information. All scripts that are to be available in the demo must have their entry here. The specified fields are: file name, descriptive name, parameters taken (optional), and default order (optional). 
 
 See the demos folder for some sample demos.

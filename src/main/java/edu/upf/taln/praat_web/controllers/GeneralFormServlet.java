@@ -28,21 +28,21 @@ public class GeneralFormServlet extends HttpServlet{
 	
 	public static void requestWithExtraAttributes(HttpServletRequest request, Map<String, String> extras) throws JsonParseException, JsonMappingException, IOException{
 		String json = (String) request.getParameter("demo");
-		File jsonFile = new File(json);
+		File jsonFile = new File(json + "/config.json");
 		
 		//Parse json file to DemoData object
 		ObjectMapper mapper = new ObjectMapper();
 		DemoData demoData = mapper.readValue(jsonFile, DemoData.class);
 		demoData.setFilePath(json);
 		
-		File audiosFolder = new File(demoData.getAudiosFolder());
+		File audiosFolder = new File(demoData.getFilePath() + "/" + demoData.getAudiosFolder());
 		List<File> audios = Utils.getFilesInFolder(audiosFolder);
 		
 		List<ScriptInfo> scriptsInfo = demoData.getScriptsInfo();
 		Collections.sort(scriptsInfo);
 		
 		if(demoData.getTextgridFolder()!=null){
-			File textgridsFolder = new File(demoData.getTextgridFolder());
+			File textgridsFolder = new File(demoData.getFilePath() + "/" + demoData.getTextgridFolder());
 			List<File> textgrids = Utils.getFilesInFolder(textgridsFolder);
 			request.setAttribute("textgrids", textgrids);
 		}
@@ -50,7 +50,7 @@ public class GeneralFormServlet extends HttpServlet{
 		//Initialization needed attributes
 		request.setAttribute("name", demoData.getName());
 		request.setAttribute("description", demoData.getDescription());
-		request.setAttribute("scriptsFolder", demoData.getScriptsFolder());
+		request.setAttribute("scriptsFolder", demoData.getFilePath() + "/" +demoData.getScriptsFolder());
 		request.setAttribute("scriptsInfo", scriptsInfo);
 		request.setAttribute("audios", audios);
 		request.setAttribute("useTextgrids", demoData.isUseTextGrid());

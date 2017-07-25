@@ -3,10 +3,10 @@
 	"menuDescription": "This functionality allows to compare visualization capabilities of standard Praat annotation and feature annotation. Users can upload their TextGrid files containing several tiers (with the same number of intervals) to be merged as features to one main tier or run sample file demos.",
 	"name": "Demo: Merging Tiers to Features",
 	"description": "Users can upload their own TextGrid files including duplicated tiers with different information in each segment (point or interval). Tier names will be used as feature labels and segment labels as feature values. Users must indicate the tier number at which they want the features to be annotated and the range of tiers which are to be converted to features.",
-	"audiosFolder": "/home/ivan/git/praat-web/src/main/webapp/resources/core/demos/merge/audios",
+	"audiosFolder": "audios",
 	"useTextGrid": true,
-	"textgridFolder": "/home/ivan/git/praat-web/src/main/webapp/resources/core/demos/merge/textgrids",
-	"scriptsFolder": "/home/ivan/git/praat-web/src/main/webapp/resources/core/demos/merge/scripts",
+	"textgridFolder": "textgrids",
+	"scriptsFolder": "scripts",
 	"scriptsInfo":[
 		{ "file":"mergeMod.praat", "description":"MS: Merge tiers", "params":"4,10,1", "defaultSort":1}
 	]

@@ -35,7 +35,7 @@ public class MainServlet extends HttpServlet{
 		        			if(subFileEntry.getName().equals("config.json")){
 		        				ObjectMapper mapper = new ObjectMapper();
 		        				DemoData demoData = mapper.readValue(subFileEntry, DemoData.class);
-		        				demoData.setFilePath(subFileEntry.getAbsolutePath());
+		        				demoData.setFilePath(fileEntry.getAbsolutePath());
 		        				demos.add(demoData);
 		        			}
 		        		}
