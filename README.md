@@ -56,7 +56,7 @@ The best to do the installation is to clone this repository. Define the demos (a
 
 > mvn package
 
-You will also need to download Praat and define its directory in the web.xml file before packaging. You can download out extended version of Praat from here: https://github.com/TalnUPF/praat
+You will also need to download Praat and define its directory in the web.xml file before packaging. You can download the source code of out extended version of Praat from here: https://github.com/TalnUPF/praat/tree/upf
 
 ## demo definition
 
