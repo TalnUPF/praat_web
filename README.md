@@ -6,25 +6,23 @@ The web interface does not include the full Praat functionality. e.g does not al
 
 A running example of Praat on the web can be found in http://taln.upf.edu/PraatOnTheWeb 
 
-The link to the web application is http://kristina.taln.upf.edu/praatweb/ and it is described in our publication (Domínguez et al. 2016)
-
 
   
-### Demos
+### What Praat On the Web does:
 
-* A demo is composed of the following elements defined by the administrator: 
-	- Some sample sound files (with maybe some input textgrids)
+* The administrator intalls Praat On The Web and customizes the installation with: 
+	- Some sample sound files (with maybe some associated input textgrids)
 	- A set of scripts to run on the selected sound file (and textgrid). Scripts order can be specified in the configuration file.
 
-* The user selects the sound file (or uploads her own one), 
-* The user checks and sorts the scripts to run and runs them,
+* Users can select one sound file (or upload their own one), 
+* Users can check and sort the scripts to run and then they can run them over the selected sound file,
 * The system shows the result containing 
 	- the sound file, 
 	- the intensity and pitch
 	- the tiers of the final textgrid.
 	  
 * The user can then, navigate through the sound file, check the annotations or listen the sound.
-* The system uses another improvement that we did to Praat. The capacity to show multiple values (a features vector) for each interval or time point.  
+* The system uses another improvement that we did to Praat. The capacity to show multiple values (a features vector) for each interval or time point. The improvement is available in https://github.com/TalnUPF/praat/tree/upf  
   
 ## Specifications  
 
@@ -52,11 +50,15 @@ PraatWeb folder includes two subdirectories:
     
 # Installation
 
-The best to do the installation is to clone this repository. Define the demos (as explained below) and do the 
-
+The best to do the installation is to do it using maven. Many places explain how to install maven, for example here 
+ http://www.baeldung.com/install-maven-on-windows-linux-mac or the original maven page https://maven.apache.org/install.html
+* Clone this repository. 
+* You will also need to download Praat and define its directory in the web.xml file. You can download the source code of out extended version of Praat from here: https://github.com/TalnUPF/praat/tree/upf
+* Define the demos (as explained below) and do the 
+* package the war file using maven
 > mvn package
-
-You will also need to download Praat and define its directory in the web.xml file before packaging. You can download the source code of out extended version of Praat from here: https://github.com/TalnUPF/praat/tree/upf
+* Install Tomcat  (this depends on Tomcat version and operating system, check nice tutorials out there)
+* and setup (deploy) the application inside tomcat  (check some tutorials) 
 
 ## demo definition
 
@@ -65,13 +67,14 @@ Each demo is defined in its own folder on the demos folder, containing a JSON ob
 - Menu description (it can include some html)
 - Demo name
 - Description (it can include some html)
-- Folder with some sample sound files (relative to demo folder)(the folder can be empty)
+- Path to Folder with some sample sound files (relative to demo folder)(the folder can be empty)
 - Textgrids (true/false) to indicate if the processing needs a textgrid
-- Folder with textgrids (relative to demo folder)(the folder can be empty)
-- Folder with scripts to apply at the sound file (relative to demo folder)(if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
+- Path to Folder with textgrids (relative to demo folder)(the folder can be empty)
+- Path to Folder with scripts to apply at the sound file (relative to demo folder)(if empty then only intensity and pitch are computed and added to the visualitzation) when empty it can be used to display soundfiles+textgrids
 - Array with scripts information. All scripts that are to be available in the demo must have their entry here. The specified fields are: file name, descriptive name, parameters taken (optional), and default order (optional). 
 
 See the demos folder for some sample demos.
+The system shows the demos in alphabetic order (so you can number the folders force the sorting like "1basic", "2advanced" , "3..."...) 
 
 ### Scripts restrictions
 
