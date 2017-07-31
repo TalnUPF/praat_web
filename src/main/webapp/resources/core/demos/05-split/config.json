@@ -1,6 +1,7 @@
 {
-	"menuName": "Feature Annotation: Splitting Features",
-	"menuDescription": "This functionality allows reversing feature annotation. Users can upload previously generated TextGrids annotated with features (i.e., from the prosody tagger in demo 2) and split features to different intervals.",
+	"menuName": "Feature Annotation (2): Splitting Features",
+	"menuDescription": "This functionality allows reversing feature annotation. Users can upload previously generated TextGrids annotated with features (i.e., from the prosody tagger in modular scripting demos) and split features to different tiers.",
+	"button": "Enter Feature annotation (2)",
 	"name": "Demo: Splitting Features in Tiers",
 	"description": "This functionality reverses the feature annotation to separate tiers. A TextGrid annotated with features is split in tiers. Segments must contain the same number of features located in the same position. Feature labels will be used as tier names and feature values as segment labels.",
 	"audiosFolder": "audios",

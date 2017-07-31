@@ -3,6 +3,7 @@ package edu.upf.taln.praat_web.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -28,7 +29,9 @@ public class MainServlet extends HttpServlet{
     	List<DemoData> demos = new ArrayList<DemoData>();
     	File demosFolder = new File(demosPath);
     	if (demosFolder.isDirectory()) {
-			for (final File fileEntry : demosFolder.listFiles()) {
+    		File[] files = demosFolder.listFiles();
+    		Arrays.sort(files);
+			for (final File fileEntry : files) {
 		        if (fileEntry.isDirectory()) {
 		        	for (final File subFileEntry : fileEntry.listFiles()) {
 		        		if (!subFileEntry.isDirectory()) {

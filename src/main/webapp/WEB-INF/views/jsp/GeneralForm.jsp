@@ -18,12 +18,14 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link href="${pageContext.servletContext.contextPath}/resources/core/css/forms.css" rel="stylesheet" type="text/css"/>
 	<link href="${pageContext.servletContext.contextPath}/resources/core/css/general.css" rel="stylesheet" type="text/css"/>
-	<title>Demo 2: Modular Scripting</title>
+	<% 
+	String name = (String)request.getAttribute("name");
+	%>
+	<title><%=name%></title>
 </head>
 <body>
 
 	<%
-	String name = (String)request.getAttribute("name");
 	String description = (String)request.getAttribute("description"); 
 	String demo = (String)request.getAttribute("demo");
 	%>

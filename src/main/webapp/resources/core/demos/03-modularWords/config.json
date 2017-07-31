@@ -1,6 +1,7 @@
 {
-	"menuName": "Modular Scripting Using Features (Word segments)",
-	"menuDescription": "This demo includes a prosody tagger which has been scripting in as a modular pipeline, thanks to the functionality of feature annotation. Users can perform prosodic phrases and prominence prediction on word segments. A TextGrid with the word segmentation of the file needs to be uploaded. Sample files are also available.",
+	"menuName": "Modular Scripting (2): Prosody segmentation using word alignment",
+	"menuDescription": "A prosody tagger is scripted as a modular pipeline to demonstrate the functionality of feature annotation for scripting purposes. An additional module is implemented to predict prosodic phrases and prominence based on words. Speech files and word alignment must be uploaded to get a segmentation into prosodic phrases and prominence prediction. Sample files are available.",
+	"button": "Enter Modular scripting (2)",
 	"name": "Demo: Modular Scripting",
 	"description": "A prosody tagger implemented as a modular pipeline is used as an example of modular scripting using features. Users can upload their own speech files for segmentation in prosodic phrases and prominence detection or use sample files.\n<br/>A TextGrid with the word segmentation on tier number 1 must be uploaded for this configuration.\n<br/>Users can furthermore select if they want to visualize all tiers generated from each module or only the final prediction (i.e., prosodic phrases and prominence).",
 	"audiosFolder": "audios",

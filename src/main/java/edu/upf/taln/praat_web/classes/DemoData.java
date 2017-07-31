@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class DemoData {
 	String menuName;
 	String menuDescription;
+	String button;
 	String name;
 	String description;
 	String audiosFolder;
@@ -18,6 +19,12 @@ public class DemoData {
 	String filePath;
 	List<ScriptInfo> scriptsInfo = new ArrayList<ScriptInfo>();
 	
+	public String getButton() {
+		return button;
+	}
+	public void setButton(String button) {
+		this.button = button;
+	}
 	public String getName() {
 		return name;
 	}

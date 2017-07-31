@@ -22,8 +22,14 @@
 	  	<img src="${pageContext.servletContext.contextPath}/resources/core/images/TALN.png" class="logo"/>
 	  </div>
 	  <div class="page-subheader">
-		<h3 class="left">This website demonstrates two Praat on the Web functionalities: web visualization and modular scripting using features. Two further demos on feature annotation are available for merging tiers as feature vectors and splitting features into tiers.<br/>To access each demo, click on the Enter button.</h3>
-	  </div>
+		<h3 class="left">This website demonstrates two Praat on the Web functionalities: web visualization and modular scripting using features. The modular scripting functionality is exemplified as a prosody tagger that predicts prosodic phrases and prominence from audio with and without word alignment. Two further demos on feature annotation are available for merging tiers as feature vectors and splitting features into tiers.<br/>To access each demo, click on the Enter button.</h3>
+		<h4>Citation:
+		<br/>
+		If you this webpage or any of the tools included, please cite the following paper:<br/>
+		 [1] Domínguez, M., Latorre, I., Farrús, M., Codina, J., and Wanner, L. (2016). Praat on the Web: An upgrade of Praat for semiautomatic speech annotation. In Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics: System Demonstrations. Osaka, Japan, pages 218–222.<br/>
+		If you use any of the modular scripting demos, you must cite paper [1] and also the following paper:<br/>
+		 [2] Domínguez, M., Farrús, M., and Wanner, L. (2016). An automatic prosody tagger for spontaneous speech. In Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics. Osaka, Japan, pages 377–387.</h4>
+		</div>
 		
 	<%
 	List<DemoData> demos = (List<DemoData>)request.getAttribute("demos");
@@ -36,7 +42,7 @@
 		    <p><%=demo.getMenuDescription()%></p>
 		    <form action="GeneralForm" method="post" enctype="multipart/form-data" id="runForm">
 		    	<input type="hidden" name="demo" value="<%=demo.getFilePath()%>"/>
-		    	<button type="submit" class="btn btn-textgrid btn-lg">Enter <%=demo.getMenuName()%></button>
+		    	<button type="submit" class="btn btn-textgrid btn-lg">Enter <%=demo.getButton()%></button>
 	    	</form>
 	    </div>
 	    <div class="right-content">
