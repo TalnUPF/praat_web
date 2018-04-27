@@ -1,7 +1,7 @@
 {
   "menuName": "Visualization Tool",
 	"menuDescription": "This functionality allows users to upload their own speech samples and TextGrids for online visualization and audio playback. Sample files annotated with features are available.",
-	"button": "Enter Visualization Tool",
+	"button": "Enter",
 	"name": "Demo: Visualization",
 	"description": "Users can either upload their own audio and TextGrid files or visualize available demo files.",
 	"audiosFolder": "audios",

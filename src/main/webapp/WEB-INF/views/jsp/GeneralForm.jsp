@@ -89,6 +89,32 @@
 						</div>
 						<%
 						}
+						Boolean useTexts = (Boolean)request.getAttribute("useTexts");  
+						if(useTexts){
+						%>
+						<div  id="textDiv">
+							<div class="praat-group">
+				  				<div class="related-praat-group">
+									<label for="textFile">Upload your Text file or select a sample file: </label> 
+									<input type="file" id="textFile" name="textFile" size="50" class="fileInput"/>
+				  				</div>
+				  				<div >
+								 	<select class="form-control" id="textSel" name="textSelection">
+								 		<option value="" selected="selected">Select an option</option>
+								 		<%
+								 		List<File> texts = (List<File>)request.getAttribute("texts");  
+								 		for (File text : texts){
+									   		%>
+									   		<option value = "<%=text.getAbsolutePath()%>"><%=text.getName()%></option>
+									   		<%
+										}
+							 		%>
+									</select>
+				  				</div>
+				  			</div>
+						</div>
+						<%
+						}
 						%>
 				
 					</div>

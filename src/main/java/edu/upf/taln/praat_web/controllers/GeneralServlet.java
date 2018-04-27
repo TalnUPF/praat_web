@@ -78,8 +78,11 @@ public class GeneralServlet extends HttpServlet{
 		Part textGridFilePart = request.getPart("textGridFile");
 		InputStream textGridFileContent = null;
 		
+		String textSelection = request.getParameter("textSelection");
+		Part textFilePart = request.getPart("textFile");
+		InputStream textFileContent = null;
+		
 		//Data checks
-		Boolean textgrid = false;
 		boolean audioFile = (audioFilePart != null && audioFilePart.getSize() > 0);
 		if (!audioFile && audioSelection.equals("")) {
 			Map<String, String> extraAttributes= new HashMap<String, String>();
@@ -89,9 +92,15 @@ public class GeneralServlet extends HttpServlet{
 			dispatcher.forward(request, response);
 			return;
 		}
+		Boolean textgrid = false;
 		boolean textgridFile = (textGridFilePart != null && textGridFilePart.getSize() > 0);
 		if (textgridFile || (textgridSelection != null && !textgridSelection.equals(""))) {
 			textgrid = true;
+		}
+		Boolean text = false;
+		boolean textFile = (textFilePart != null && textFilePart.getSize() > 0);
+		if (textFile || (textSelection != null && !textSelection.equals(""))) {
+			text = true;
 		}
 		
 		//Obtain the input streams
@@ -103,17 +112,23 @@ public class GeneralServlet extends HttpServlet{
 				textGridFileContent = textGridFilePart.getInputStream();
 			}
 		}
+		if(text){
+			if(textFile){
+				textFileContent = textFilePart.getInputStream();
+			}
+		}
 		
 		//We generate a temporal directory name based on current time and client IP
 		long currentMilis = System.currentTimeMillis();
-		String ref = request.getRemoteAddr().replace(".", "") + currentMilis;
+		String ref = request.getRemoteAddr().replace(".", "").replace(":", "") + currentMilis;
 		String temporalDirectory = SERVER_UPLOAD_LOCATION_FOLDER + ref + "/";
 		String audioFilePath = temporalDirectory + ref + ".wav";
 		String textGridFilePath = temporalDirectory + ref + ".TextGrid";
+		String textFilePath = temporalDirectory + ref + ".txt";
 		//We expect textgrid result of the scripts pipeline to end in "_result.TextGrid"
 		String resultFilePath = temporalDirectory + ref + "_result.TextGrid";
 		
-		File theDir = new File(SERVER_UPLOAD_LOCATION_FOLDER + request.getRemoteAddr().replace(".", "") + currentMilis);
+		File theDir = new File(SERVER_UPLOAD_LOCATION_FOLDER + ref);
 		// if the temportal directory does not exist, create it
 		if (!theDir.exists()) {
 		    try{
@@ -141,6 +156,13 @@ public class GeneralServlet extends HttpServlet{
 				Files.copy(Paths.get(textgridSelection), Paths.get(textGridFilePath), REPLACE_EXISTING);
 			}
 		}
+		if(text){
+			if(textFile){
+				Utils.saveFile(textFileContent, textFilePath);
+			}else{
+				Files.copy(Paths.get(textSelection), Paths.get(textFilePath), REPLACE_EXISTING);
+			}
+		}
 		
 		//If there are scripts to run
 		if(scripts){
@@ -149,12 +171,21 @@ public class GeneralServlet extends HttpServlet{
 				String scriptParams = params[i];
 			
 				List<String> command = new ArrayList<String>();
-				command.add(Global.getPraatLocation());
-				command.add("--run");
-				command.add("--no-pref-files");
-				command.add(order[i]);
-				command.add(temporalDirectory);
-				command.add(ref);
+				//Script is python
+				if (order[i].endsWith(".py")) {
+					command.add("python");
+					command.add(order[i]);
+					command.add(temporalDirectory);
+					command.add(ref);
+				
+				} else { //Script is praat
+					command.add(Global.getPraatLocation());
+					command.add("--run");
+					command.add("--no-pref-files");
+					command.add(order[i]);
+					command.add(temporalDirectory);
+					command.add(ref);
+				}
 				
 				String[] paramsSplitted = scriptParams.split(",");
 				for(int j = 0; j < paramsSplitted.length; j++){

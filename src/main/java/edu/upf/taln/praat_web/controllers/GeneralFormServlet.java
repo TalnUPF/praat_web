@@ -46,6 +46,12 @@ public class GeneralFormServlet extends HttpServlet{
 			List<File> textgrids = Utils.getFilesInFolder(textgridsFolder);
 			request.setAttribute("textgrids", textgrids);
 		}
+		
+		if(demoData.getTextFolder()!=null){
+			File textsFolder = new File(demoData.getFilePath() + "/" + demoData.getTextFolder());
+			List<File> texts = Utils.getFilesInFolder(textsFolder);
+			request.setAttribute("texts", texts);
+		}
 
 		//Initialization needed attributes
 		request.setAttribute("name", demoData.getName());
@@ -54,6 +60,7 @@ public class GeneralFormServlet extends HttpServlet{
 		request.setAttribute("scriptsInfo", scriptsInfo);
 		request.setAttribute("audios", audios);
 		request.setAttribute("useTextgrids", demoData.isUseTextGrid());
+		request.setAttribute("useTexts", demoData.isUseText());
 		request.setAttribute("demo", json);
 		
 		if(extras != null){

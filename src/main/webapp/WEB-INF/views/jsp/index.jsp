@@ -26,9 +26,10 @@
 		<h4>Citation:
 		<br/>
 		If you this webpage or any of the tools included, please cite the following paper:<br/>
-		 [1] Domínguez, M., Latorre, I., Farrús, M., Codina, J., and Wanner, L. (2016). Praat on the Web: An upgrade of Praat for semiautomatic speech annotation. In Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics: System Demonstrations. Osaka, Japan, pages 218–222.<br/>
+		 [1] Domínguez, M., Latorre, I., Farrús, M., Codina, J., and Wanner, L. (2016). Praat on the Web: An upgrade of Praat for semiautomatic speech annotation. In Proceedings the 26th International Conference on Computational Linguistics: System Demonstrations (COLING 2016). Osaka, Japan, pages 218–222.<br/>
 		If you use any of the modular scripting demos, you must cite paper [1] and also the following paper:<br/>
-		 [2] Domínguez, M., Farrús, M., and Wanner, L. (2016). An automatic prosody tagger for spontaneous speech. In Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics. Osaka, Japan, pages 377–387.</h4>
+		 [2] Domínguez, M., Farrús, M., and Wanner, L. (2016). An automatic prosody tagger for spontaneous speech. In Proceedings the 26th International Conference on Computational Linguistics (COLING 2016). Osaka, Japan, pages 377–387.</br>
+		 [3] Domínguez, M., Burga, A., Farrús, M., and Wanner, L. (2018). Compilation of Corpora for the Study of the Information Structure–Prosody Interface. In Proceedings of the 11th edition of the Language Resources and Evaluation Conference (LREC 2018). Miyasaki, Japan.</h4>
 		</div>
 		
 	<%
@@ -42,7 +43,7 @@
 		    <p><%=demo.getMenuDescription()%></p>
 		    <form action="GeneralForm" method="post" enctype="multipart/form-data" id="runForm">
 		    	<input type="hidden" name="demo" value="<%=demo.getFilePath()%>"/>
-		    	<button type="submit" class="btn btn-textgrid btn-lg">Enter <%=demo.getButton()%></button>
+		    	<button type="submit" class="btn btn-textgrid btn-lg"><%=demo.getButton()%></button>
 	    	</form>
 	    </div>
 	    <div class="right-content">

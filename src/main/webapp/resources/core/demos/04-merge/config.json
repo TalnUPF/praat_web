@@ -1,7 +1,7 @@
 {
 	"menuName": "Feature Annotation (1): Merging Tiers",
 	"menuDescription": "This functionality allows to compare visualization capabilities of standard Praat annotation and feature annotation. Users can upload their TextGrid files containing several tiers (with the same number of intervals) to be merged as features to one main tier. Sample files are available.",
-	"button": "Enter Feature annotation (1)",
+	"button": "Enter",
 	"name": "Demo: Merging Tiers to Features",
 	"description": "Users can upload their own TextGrid files including duplicated tiers with different information in each segment (point or interval). Tier names will be used as feature labels and segment labels as feature values. Users must indicate the tier number at which they want the features to be annotated and the range of tiers which are to be converted to features.",
 	"audiosFolder": "audios",

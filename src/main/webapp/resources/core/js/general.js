@@ -230,6 +230,9 @@ function checkAll(){
 	}else if($("#textGridFile").is(":visible") && ($("#textGridFile").val() == "" && $("#tgSel").val() == "")){
 		errorContainer.innerHTML = "No TextGrid provided.";
 		error = 1;
+	}else if($("#textFile").is(":visible") && ($("#textFile").val() == "" && $("#textSel").val() == "")){
+		errorContainer.innerHTML = "No text provided.";
+		error = 1;
 	}else{
 		errorContainer.innerHTML = "";
 	}

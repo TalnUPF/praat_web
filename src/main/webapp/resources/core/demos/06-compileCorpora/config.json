@@ -1,0 +1,22 @@
+{
+	"menuName": "Compilation of Corpora",
+	"menuDescription": "This pipeline processes and annotated a txt file with thematicity annotations and a wav sound file with the corresponding speech for that text as described in [3].",
+	"button": "Enter",
+	"name": "Demo: Compilation of Corpora",
+	"description": "This implementation demonstrates the pipeline for the compilation of corpora to study the Information Structure-Prosody interface from an empirical perspective. The pipeline needs as input a txt file with the text annotated with Information Structure as explained in [3]. Then the txt format is converted to TextGrid, for the extraction and annotation of prosodic parameters. The resulting TextGrid can be transformed to a comma separated value (csv) file for statistical analysis or machine learning experiments.",
+	"audiosFolder": "audios",
+	"useTextGrid": true,
+	"textgridFolder": "textgrids",
+	"useText": true,
+	"textFolder": "texts",
+	"scriptsFolder": "scripts",
+	"scriptsInfo":[
+		{ "file":"module01.py", "description":"1", "defaultSort":1},
+		{ "file":"module02.praat", "description":"2", "defaultSort":2},
+		{ "file":"module03.praat", "description":"3", "defaultSort":3},
+		{ "file":"module04.praat", "description":"4", "defaultSort":4},
+		{ "file":"module05.praat", "description":"5", "defaultSort":5},
+		{ "file":"module06.praat", "description":"6", "defaultSort":6},
+		{ "file":"module07.praat", "description":"7", "defaultSort":7}
+	]
+}

@@ -15,6 +15,8 @@ public class DemoData {
 	String audiosFolder;
 	boolean useTextGrid = false; 
 	String textgridFolder;
+	boolean useText = false; 
+	String textFolder;
 	String scriptsFolder;
 	String filePath;
 	List<ScriptInfo> scriptsInfo = new ArrayList<ScriptInfo>();
@@ -84,5 +86,17 @@ public class DemoData {
 	}
 	public void setMenuDescription(String menuDescription) {
 		this.menuDescription = menuDescription;
+	}
+	public boolean isUseText() {
+		return useText;
+	}
+	public void setUseText(boolean useText) {
+		this.useText = useText;
+	}
+	public String getTextFolder() {
+		return textFolder;
+	}
+	public void setTextFolder(String textFolder) {
+		this.textFolder = textFolder;
 	}
 }
