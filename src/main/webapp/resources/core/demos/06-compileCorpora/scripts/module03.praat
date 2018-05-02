@@ -128,7 +128,7 @@ for t from from_tier+1 to to_tier
 	endfor
 endfor
 # Save changes to directory
-Write to text file: directory$ + basename$ + "_result_mod01.TextGrid"
+Write to text file: directory$ + basename$ + "_result.TextGrid"
 #endfor
 select all
 Remove

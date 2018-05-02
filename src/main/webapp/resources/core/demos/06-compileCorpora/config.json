@@ -11,12 +11,11 @@
 	"textFolder": "texts",
 	"scriptsFolder": "scripts",
 	"scriptsInfo":[
-		{ "file":"module01.py", "description":"1", "defaultSort":1},
-		{ "file":"module02.praat", "description":"2", "defaultSort":2},
-		{ "file":"module03.praat", "description":"3", "defaultSort":3},
-		{ "file":"module04.praat", "description":"4", "defaultSort":4},
-		{ "file":"module05.praat", "description":"5", "defaultSort":5},
-		{ "file":"module06.praat", "description":"6", "defaultSort":6},
-		{ "file":"module07.praat", "description":"7", "defaultSort":7}
+		{ "file":"module01.py", "description":"Module 1: txt to TextGrid", "defaultSort":1},
+		{ "file":"module02.praat", "description":"Module 2: wav to objects", "defaultSort":2},
+		{ "file":"module03.praat", "description":"Module 3: Extraction of acoustic parameters", "defaultSort":3},
+		{ "file":"module04.praat", "description":"Module 4: Computation of normalized parameters", "defaultSort":4},
+		{ "file":"module05.praat", "description":"Module 5: Annotation of linguistic features", "defaultSort":5},
+		{ "file":"module06.praat", "description":"Module 6: Computation of speech rate", "params":"3,8", "defaultSort":6}
 	]
 }

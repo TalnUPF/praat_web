@@ -35,8 +35,8 @@ endform
 #fileName$ = Get string: ifile
 #basename$ = fileName$ - "_result_mod01.TextGrid"
 
-Read from file: directory$ + basename$ "_result_mod01.TextGrid"
-from_tier = 1
+Read from file: directory$ + basename$ + "_result.TextGrid"
+from_tier = 3
 # Select number of tiers
 to_tier = Get number of tiers
 # Calculate z-scores of each interval (reference to previous level)
@@ -109,7 +109,7 @@ for t from from_tier to to_tier
 	endfor
 endfor
 # Save changes to directory
-Write to text file: directory$ + basename$ + "_result_mod02.TextGrid"
+Write to text file: directory$ + basename$ + "_result.TextGrid"
 #endfor
 select all
 Remove

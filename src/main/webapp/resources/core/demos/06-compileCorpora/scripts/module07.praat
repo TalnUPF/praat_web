@@ -37,7 +37,7 @@ appendFileLine: directory$ + basename$ + ".csv", titleline$
 #fileName$ = Get string: ifile
 #basename$ = fileName$ - "_result_mod01.TextGrid"
 
-Read from file: directory$ + basename$ "_result_mod01.TextGrid"
+Read from file: directory$ + basename$ + "_result.TextGrid"
 from_tier = 1
 # Select number of tiers
 to_tier = Get number of tiers

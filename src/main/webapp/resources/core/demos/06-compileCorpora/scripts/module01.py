@@ -5,8 +5,10 @@ from itertools import tee, islice, chain, izip
 import sys
 import re
 
-f = sys.argv[1]
-tx = open(f, "r")
+directory = sys.argv[1]
+basename = sys.argv[2]
+
+tx = open(directory + basename + ".txt", "r")
 raw_txt = tx.read()
 ################################
 # Read from txt
@@ -179,14 +181,15 @@ for idx,sentence in enumerate(txt_list):
 #############################################################
 ################################
 # Look up words in TextGrid
-f2 = sys.argv[2]
-tg = open(f2, "r+")
+tg = open(directory + basename + ".TextGrid", "r+")
 raw_txtgr = tg.read()
 #print "TextGrid has been opened"
 
 # Header info
+raw_txtgr = raw_txtgr.replace("\r", "")
 txtgr_list = raw_txtgr.split("\n")
 n_tiers = int(txtgr_list[6].split("=")[1])
+#print "N. of tiers = ", n_tiers
 xmin = txtgr_list[3].split("=")[1]
 xmax = txtgr_list[4].split("=")[1]
 
@@ -245,6 +248,7 @@ tierList = ["L1P","L1T","L2P", "L2T"]
 listList = [[l1PList], [l1TList], [l2PList], [l2TList]]
 new_txtgr = txtgr_list[:6]
 tiers_new = n_tiers + len(tierList)
+#print "Total tiers = ", tiers_new
 change_tiers = "size = " + str(tiers_new)
 new_txtgr.append(change_tiers)
 new_txtgr.extend(txtgr_list[7:-1])
@@ -252,8 +256,8 @@ new_txtgr.extend(txtgr_list[7:-1])
 for ix,lst in enumerate(listList):
 	if lst != [[]]:
 		#print "Entering list = ", ix
-		new_tier = n_tiers + ix +1
-
+		new_tier = n_tiers + ix+ 1
+		#print "New tier = ", new_tier
 		tier_n = "    item ["+ str(new_tier) +"]:"
 		tier_type = "        class = \"IntervalTier\""
 		tier_name = "        name = \""+ tierList[ix] + "\""
@@ -362,10 +366,13 @@ for ix,lst in enumerate(listList):
 	else:
 		#print "Empty list = ", ix 
 		new_tier = n_tiers + ix + 1
-		new_txtgr = txtgr_list[:6]
-		change_tiers = "size = " + str(new_tier)
-		new_txtgr.append(change_tiers)
-		new_txtgr.extend(txtgr_list[7:-1])
+		#print "New tier = ", new_tier
+		### changes ###
+		#new_txtgr = txtgr_list[:6]
+		#change_tiers = "size = " + str(new_tier)
+		#new_txtgr.append(change_tiers)
+		#new_txtgr.extend(txtgr_list[7:-1])
+		### change end ###
 
 		tier_n = "    item ["+ str(new_tier) +"]:"
 		tier_type = "        class = \"IntervalTier\""
@@ -379,14 +386,13 @@ for ix,lst in enumerate(listList):
 
 		int_num = "        intervals [\"1\"]:"
 		int_xmin= "            xmin = 0"
-		int_xmax= "            xmax =" + str(xmax)
+		int_xmax= "            xmax = " + str(xmax)
 		int_txt = "            text = \"\""
 		new_txtgr.extend([int_num,int_xmin,int_xmax,int_txt])
 
 ######################################################
 # Print result file
-r = sys.argv[2].split(".")
-result = open(r[0] + "_result.TextGrid", "w")
+result = open(directory + basename + "_result.TextGrid", "w")
 newfile = "\n".join(new_txtgr)
 result.write(newfile)
 

@@ -168,8 +168,7 @@ public class GeneralServlet extends HttpServlet{
 		if(scripts){
 			//Execute all modular scripts sequentialy
 			for(int i = 0; i < order.length; i++){
-				String scriptParams = params[i];
-			
+		
 				List<String> command = new ArrayList<String>();
 				//Script is python
 				if (order[i].endsWith(".py")) {
@@ -187,11 +186,14 @@ public class GeneralServlet extends HttpServlet{
 					command.add(ref);
 				}
 				
-				String[] paramsSplitted = scriptParams.split(",");
-				for(int j = 0; j < paramsSplitted.length; j++){
-					String param = paramsSplitted[j];
-					if(!param.trim().equals("")){
-						command.add(param.trim());
+				if (params.length > i){
+					String scriptParams = params[i];
+					String[] paramsSplitted = scriptParams.split(",");
+					for(int j = 0; j < paramsSplitted.length; j++){
+						String param = paramsSplitted[j];
+						if(!param.trim().equals("")){
+							command.add(param.trim());
+						}
 					}
 				}
 				

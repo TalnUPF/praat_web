@@ -21,8 +21,8 @@
 ###### Computation of speech rate										  #
 ###########################################################################
 form Parameters
-	text directory /home/upf/Escritorio/en_read_speech/textgrids_is/
-	comment Annotate selected tiers
+	text directory
+	text basename
 	real from_tier 3
 	real to_tier 8
 endform
@@ -34,7 +34,7 @@ endform
 #	selectObject: "Strings list"
 #	fileName$ = Get string: ifile
 #	basename$ = fileName$ - "_result_mod03.TextGrid"
-Read from file: directory$ + basename$ "_result_mod03.TextGrid"
+Read from file: directory$ + basename$ + "_result.TextGrid"
 from_tier = 1
 # Select number of tiers
 to_tier = Get number of tiers
@@ -100,7 +100,7 @@ for t from from_tier to to_tier
 endfor	
 
 # Save changes to directory
-Save as text file: directory$ + basename$ + "_result_mod04.TextGrid"
+Save as text file: directory$ + basename$ + "_result.TextGrid"
 #endfor
 select all
 Remove

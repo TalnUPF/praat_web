@@ -1,0 +1,112 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 8.025306890956161 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "whole_speech" 
+        xmin = 0 
+        xmax = 8.025306890956161 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 8.025306890956161 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "words" 
+        xmin = 0 
+        xmax = 8.025306890956161 
+        intervals: size = 22 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.10654337350890009 
+            text = "" 
+        intervals [2]:
+            xmin = 0.10654337350890009 
+            xmax = 0.7165433735089002 
+            text = "Rolls-Royce" 
+        intervals [3]:
+            xmin = 0.7165433735089002 
+            xmax = 0.9665433735089002 
+            text = "Motor" 
+        intervals [4]:
+            xmin = 0.9665433735089002 
+            xmax = 1.2665433735089 
+            text = "Cars" 
+        intervals [5]:
+            xmin = 1.2665433735089 
+            xmax = 1.9265433735089001 
+            text = "Inc." 
+        intervals [6]:
+            xmin = 1.9265433735089001 
+            xmax = 2.1065433735089005 
+            text = "" 
+        intervals [7]:
+            xmin = 2.1065433735089005 
+            xmax = 2.386543373508901 
+            text = "said" 
+        intervals [8]:
+            xmin = 2.386543373508901 
+            xmax = 2.6265433735089 
+            text = "it" 
+        intervals [9]:
+            xmin = 2.6265433735089 
+            xmax = 3.0565433735089007 
+            text = "expects" 
+        intervals [10]:
+            xmin = 3.0565433735089007 
+            xmax = 3.2865433735089002 
+            text = "its" 
+        intervals [11]:
+            xmin = 3.2865433735089002 
+            xmax = 3.4765433735089006 
+            text = "U.S" 
+        intervals [12]:
+            xmin = 3.4765433735089006 
+            xmax = 3.8765433735089 
+            text = "sales" 
+        intervals [13]:
+            xmin = 3.8765433735089 
+            xmax = 4.0065433735089 
+            text = "to" 
+        intervals [14]:
+            xmin = 4.0065433735089 
+            xmax = 4.3365433735089 
+            text = "remain" 
+        intervals [15]:
+            xmin = 4.3365433735089 
+            xmax = 4.7865433735089 
+            text = "steady" 
+        intervals [16]:
+            xmin = 4.7865433735089 
+            xmax = 4.9065433735089 
+            text = "at" 
+        intervals [17]:
+            xmin = 4.9065433735089 
+            xmax = 5.146543373508901 
+            text = "about" 
+        intervals [18]:
+            xmin = 5.146543373508901 
+            xmax = 6.1965433735089 
+            text = "1,200" 
+        intervals [19]:
+            xmin = 6.1965433735089 
+            xmax = 6.936543373508901 
+            text = "cars" 
+        intervals [20]:
+            xmin = 6.936543373508901 
+            xmax = 7.0665433735089 
+            text = "in" 
+        intervals [21]:
+            xmin = 7.0665433735089 
+            xmax = 8.0065433735089 
+            text = "1990" 
+        intervals [22]:
+            xmin = 8.0065433735089 
+            xmax = 8.025306890956161 
+            text = "" 

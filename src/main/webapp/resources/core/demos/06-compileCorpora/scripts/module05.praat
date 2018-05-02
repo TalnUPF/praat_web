@@ -34,12 +34,10 @@ endform
 #	selectObject: "Strings list"
 #	fileName$ = Get string: ifile
 #	basename$ = fileName$ - "_result_mod02.TextGrid"
-Read from file: directory$ + basename$ "_result_mod02.TextGrid"
+Read from file: directory$ + basename$ + "_result.TextGrid"
 from_tier = 1
 # Select number of tiers
 to_tier = Get number of tiers
-# Variables for objects in Menu
-text$ = "TextGrid " + basename$ + "_result_mod02"
 
 # Write features to thematicity tiers (as especified in formulaire)
 for t from from_tier to to_tier
@@ -88,7 +86,7 @@ for t from from_tier to to_tier
 	endfor
 # Save changes to directory
 endfor
-Write to text file: directory$ + basename$ + "_result_mod03.TextGrid"
+Write to text file: directory$ + basename$ + "_result.TextGrid"
 #endfor
 select all
 Remove
