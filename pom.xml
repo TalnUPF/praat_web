@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>edu.upf.taln.voice</groupId>
 	<artifactId>praatweb</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	
 	<name>PraatScriptsWebRunner</name>
@@ -40,19 +39,13 @@
 			<version>${glassfish.jersey.version}</version>
 		</dependency>
 		
-		<!-->dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1</version>
-		</dependency-->
-		
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <!-- <version>2.8.9</version> was giving a security error-->
 		    <version>2.9.10.7</version> 
 		</dependency>
 	</dependencies>
+	
 	
 	<build>
         <pluginManagement>
@@ -66,90 +59,28 @@
                         <target>${jdk.version}</target>
                     </configuration>
                 </plugin>
+	            <plugin>
+	                <groupId>external.atlassian.jgitflow</groupId>
+	                <artifactId>jgitflow-maven-plugin</artifactId>
+	                <version>1.0-m5.1</version>
+	                <configuration>
+	                    <flowInitContext>
+	                        <masterBranchName>master</masterBranchName>
+	                        <developBranchName>development</developBranchName>
+	                        <featureBranchPrefix>feature-</featureBranchPrefix>
+	                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+	                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+	                        <versionTagPrefix>version-</versionTagPrefix>
+	                    </flowInitContext>
+	                    <!-- <username>USERNAME_FOR_A_GIT_USER</username> -->
+	                    <!-- <password>PASSWORD_FOR_A_GIT_USER</password> -->
+	                    <noDeploy>true</noDeploy>
+	                    <squash>false</squash>
+	                    <scmCommentPrefix>[RELEASE] </scmCommentPrefix>
+	                </configuration>
+	            </plugin>
             </plugins>
         </pluginManagement>
     </build>
 	
-	<profiles>
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
-						<version>2.2</version>
-						<configuration>
-							<server>local_tomcat</server>
-							<url>http://localhost:8080/manager/text</url>
-							<path>/${project.artifactId}</path>
-						</configuration>
-					</plugin>
-					<plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.mvn.war.plugin}</version>
-                        <configuration>
-                            <webXml>${project.basedir}/src/main/resources/local/WEB-INF/web.xml</webXml>
-                        </configuration>
-                    </plugin>
-				</plugins>
-			</build>
-		</profile>
-	
-		<profile>
-			<id>development</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
-						<version>2.2</version>
-						<configuration>
-							<server>abstractive_tomcat</server>
-							<url>http://ms-abstractive.s.upf.edu:8080/manager/text</url>
-							<path>/dev/${project.artifactId}</path>
-						</configuration>
-					</plugin>
-					<plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.mvn.war.plugin}</version>
-                        <configuration>
-                            <webXml>${project.basedir}/src/main/resources/development/WEB-INF/web.xml</webXml>
-                        </configuration>
-                    </plugin>
-				</plugins>
-			</build>
-		</profile>
-		
-		<profile>
-			<id>production</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
-						<version>2.2</version>
-						<configuration>
-							<server>kristina_tomcat</server>
-							<url>http://kristina-taln.s.upf.edu:8080/manager/text</url>
-							<path>/prod/${project.artifactId}</path>
-						</configuration>
-					</plugin>
-					<plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.mvn.war.plugin}</version>
-                        <configuration>
-                            <webXml>${project.basedir}/src/main/resources/production/WEB-INF/web.xml</webXml>
-                        </configuration>
-                    </plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
